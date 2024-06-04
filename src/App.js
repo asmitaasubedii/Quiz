@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { Accordion } from "./components/Pages/accordian/accordion";
+import { Quiz } from "./components/Pages/Quiz/quix";
+import { Result } from "./components/Pages/Quiz/result";
+import { Start } from "./components/Pages/Quiz/start";
+import { QuizHolder } from "./Context/QuizHolder";
+import { QuizContex } from "./Context/QuizHolder";
+import { useContext } from "react";
 function App() {
+  const { start, exit } = useContext(QuizContex);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {exit === false ? (
+        <> {start ? <Quiz /> : <Start />}</>
+      ) : (
+        <>
+          <Result />
+        </>
+      )}
+    </>
   );
 }
 
 export default App;
+
+{
+  /* <Accordion /> */
+}
